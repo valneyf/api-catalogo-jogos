@@ -68,9 +68,9 @@ namespace APICatalogoJogos.Services
             return new JogoViewModel
             {
                 Id = jogoInsert.Id,
-                Nome = jogoInsert.Nome,
-                Produtora = jogoInsert.Produtora,
-                Preco = jogoInsert.Preco
+                Nome = jogo.Nome,
+                Produtora = jogo.Produtora,
+                Preco = jogo.Preco
             };
         }
 
@@ -102,7 +102,7 @@ namespace APICatalogoJogos.Services
 
         public async Task Remover(Guid id)
         {
-            var jogo = _jogoRepository.Obter(id);
+            var jogo = await _jogoRepository.Obter(id);
 
             if (jogo == null)
                 throw new JogoNaoCadastradoException();

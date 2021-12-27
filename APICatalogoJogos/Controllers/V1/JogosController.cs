@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace APICatalogoJogos.Controllers
 {
-    [Route("api/V1/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class JogosController : ControllerBase
     {
@@ -49,7 +49,7 @@ namespace APICatalogoJogos.Controllers
             try
             {
                 var jogo = await _jogoService.Inserir(jogoInputModel);
-                return Ok();
+                return Ok(jogo);
             }
             catch(JogoJaCadastradoException ex)
             {
@@ -74,7 +74,7 @@ namespace APICatalogoJogos.Controllers
 
         // Atualiza parte especifica do recurso
         [HttpPatch("{idJogo:guid}/preco/{preco:double}")]
-        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromBody] double preco)
+        public async Task<ActionResult> AtualizarJogo([FromRoute] Guid idJogo, [FromRoute] double preco)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace APICatalogoJogos.Controllers
             }
             catch (JogoNaoCadastradoException ex)
             {
-                return NotFound("Não existe este jogo;");
+                return NotFound("Não existe este jogo");
             }
         }
 
